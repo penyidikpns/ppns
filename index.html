@@ -53,7 +53,7 @@ var tableToExcel = (function() {
   border: 1px solid #ddd;
   margin-bottom: 12px;
 }
-#myInputhomebase {
+#myInputpolda {
   width: 100%;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
@@ -84,6 +84,7 @@ background-color: #1E90FF; }
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="&#128269 cari berdasarkan nama.." title="Ketik nama">
 <input type="text" id="myInputx" onkeyup="myFunctionx()" placeholder="&#128269 cari berdasarkan satker.." title="Ketik satker">
+<input type="text" id="myInputpolda" onkeyup="myFunctionpolda()" placeholder="&#128269 cari berdasarkan Polda.." title="Ketik Polda sesuai wilayah anda">
 <input type="button" onclick="tableToExcel('tbl_PPNS_list')" value="Download File Excel">
 <table id="tbl_PPNS_list" border="1" class="GeneratedTable">   
 <thead> 	
@@ -97,6 +98,7 @@ background-color: #1E90FF; }
 <th>PANGKAT_________________</th>   
  <th>JABATAN___________________________</th>    
 <th>SATUAN_KERJA________________________</th>    
+<th>POLDA________________________</th>  
 <th>HP</th>
 <th>HOMEBASE</th>
 <th>HOBBY</th>   
@@ -114,6 +116,7 @@ background-color: #1E90FF; }
 <td></td>    
 <td></td>    
 <td></td>    
+<td></td> 
 <td></td>    
 <td></td>    
 <td></td>    
@@ -144,12 +147,13 @@ background-color: #1E90FF; }
    var cellTTL = row.insertCell(5);    
    var cellPangkat = row.insertCell(6);    
    var cellJabatan = row.insertCell(7);    
-   var cellSatker = row.insertCell(8);    
-   var cellHP = row.insertCell(9);    
-   var cellHomebase = row.insertCell(10);    
-   var cellHobi = row.insertCell(11);    
-   var cellOlahraga = row.insertCell(12);    
-   var cellQuotes = row.insertCell(13);    
+   var cellSatker = row.insertCell(8); 
+   var cellPolda = row.insertCell(9);
+   var cellHP = row.insertCell(10);    
+   var cellHomebase = row.insertCell(11);    
+   var cellHobi = row.insertCell(12);    
+   var cellOlahraga = row.insertCell(13);    
+   var cellQuotes = row.insertCell(14);    
    cellNIP.appendChild(document.createTextNode(childKey));
    cellNama.appendChild(document.createTextNode(childData.Nama));    
    cellEmail.appendChild(document.createTextNode(childData.Email));    
@@ -158,7 +162,8 @@ background-color: #1E90FF; }
    cellTTL.appendChild(document.createTextNode(childData.TTL));    
    cellPangkat.appendChild(document.createTextNode(childData.Pangkat));    
    cellJabatan.appendChild(document.createTextNode(childData.Jabatan));    
-   cellSatker.appendChild(document.createTextNode(childData.Satker));    
+   cellSatker.appendChild(document.createTextNode(childData.Satker));
+   cellPolda.appendChild(document.createTextNode(childData.Polda)); 	    
    cellHP.appendChild(document.createTextNode(childData.HP));    
    cellHomebase.appendChild(document.createTextNode(childData.Homebase));    
    cellHobi.appendChild(document.createTextNode(childData.Hobi));    
@@ -198,6 +203,26 @@ function myFunctionx() {
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[8];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+<script>
+function myFunctionpolda() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputpolda");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tbl_PPNS_list");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[9];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
