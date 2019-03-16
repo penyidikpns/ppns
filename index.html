@@ -1,0 +1,213 @@
+    
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/png" href="https://pngimage.net/wp-content/uploads/2018/06/ppns-png-1.png"/>
+
+<img src="https://pngimage.net/wp-content/uploads/2018/06/ppns-png-1.png" alt="Smiley face" width="200" height="224">
+<p><h2>DATABASE PENYIDIK PEGAWAI NEGERI SIPIL</h2></p>
+ <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script> 
+ <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+<script>   
+// Initialize Firebase   
+var config = {     
+apiKey: "AIzaSyCVjAzQJB42nfpMtSUihm9SD7ZhBO6vpRs",     
+authDomain: "ppnsindonesia.firebaseapp.com",     
+databaseURL: "https://ppnsindonesia.firebaseio.com/",     
+projectId: "ppnsindonesia",     
+storageBucket: "",     
+messagingSenderId: "163702835059"   
+};   
+firebase.initializeApp(config); 
+</script>
+<script type="text/javascript">
+var tableToExcel = (function() {
+  var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+  return function(table, name) {
+    if (!table.nodeType) table = document.getElementById(table)
+    var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+    window.location.href = uri + base64(format(template, ctx))
+  }
+})()
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+#myInput {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#myInputx {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#myInputhomebase {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#tbl_PPNS_list {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+#tbl_PPNS_list th, #tbl_PPNS_list td {
+  text-align: left;
+  padding: 12px;
+}
+#tbl_PPNS_list tr {
+  border-bottom: 1px solid #ddd;
+}
+#tbl_PPNS_list tr:hover {
+  background-color: #D3D3D3;
+}
+table.GeneratedTable thead {   
+background-color: #1E90FF; } 
+</style>
+</head>
+<body>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="&#128269 cari berdasarkan nama.." title="Ketik nama">
+<input type="text" id="myInputx" onkeyup="myFunctionx()" placeholder="&#128269 cari berdasarkan satker.." title="Ketik satker">
+<input type="button" onclick="tableToExcel('tbl_PPNS_list')" value="Download File Excel">
+<table id="tbl_PPNS_list" border="1" class="GeneratedTable">   
+<thead> 	
+<tr> 		
+<th>NIP</th>    
+<th>NAMA____________________________</th>
+<th>EMAIL</th>   
+<th>JP_PPNS</th>
+<th>TAHUN</th>
+<th>TEMPAT_TANGGAL_LAHIR</th>    
+<th>PANGKAT_________________</th>   
+ <th>JABATAN___________________________</th>    
+<th>SATUAN_KERJA________________________</th>    
+<th>HP</th>
+<th>HOMEBASE</th>
+<th>HOBBY</th>   
+<th>OLAHRAGA</th>  
+<th>QUOTES_________________________________________________</th>    
+</tr>    
+</thead>
+    
+<tbody>   
+<tr>
+<td></td>
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+<td></td>    
+</tr>
+</tbody>
+  
+</table>    
+<script>
+  var tblmasterSheet = document.getElementById('tbl_PPNS_list');
+  var databaseRef = firebase.database().ref('masterSheet/');
+  var rowIndex = 1;
+  
+  databaseRef.once('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+   var childKey = childSnapshot.key;
+   var childData = childSnapshot.val();
+   
+   var row = tblmasterSheet.insertRow(rowIndex);
+   var cellNIP = row.insertCell(0);    
+   var cellNama = row.insertCell(1);    
+   var cellEmail = row.insertCell(2);    
+   var cellPPNS = row.insertCell(3);    
+   var cellTahun = row.insertCell(4);    
+   var cellTTL = row.insertCell(5);    
+   var cellPangkat = row.insertCell(6);    
+   var cellJabatan = row.insertCell(7);    
+   var cellSatker = row.insertCell(8);    
+   var cellHP = row.insertCell(9);    
+   var cellHomebase = row.insertCell(10);    
+   var cellHobi = row.insertCell(11);    
+   var cellOlahraga = row.insertCell(12);    
+   var cellQuotes = row.insertCell(13);    
+   cellNIP.appendChild(document.createTextNode(childKey));
+   cellNama.appendChild(document.createTextNode(childData.Nama));    
+   cellEmail.appendChild(document.createTextNode(childData.Email));    
+   cellPPNS.appendChild(document.createTextNode(childData.PPNS));    
+   cellTahun.appendChild(document.createTextNode(childData.Tahun));    
+   cellTTL.appendChild(document.createTextNode(childData.TTL));    
+   cellPangkat.appendChild(document.createTextNode(childData.Pangkat));    
+   cellJabatan.appendChild(document.createTextNode(childData.Jabatan));    
+   cellSatker.appendChild(document.createTextNode(childData.Satker));    
+   cellHP.appendChild(document.createTextNode(childData.HP));    
+   cellHomebase.appendChild(document.createTextNode(childData.Homebase));    
+   cellHobi.appendChild(document.createTextNode(childData.Hobi));    
+   cellOlahraga.appendChild(document.createTextNode(childData.Olahraga));    
+   cellQuotes.appendChild(document.createTextNode(childData.Quotes));    
+   
+   rowIndex = rowIndex + 1;     
+	});   
+  });      
+</script>  
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tbl_PPNS_list");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+<script>
+function myFunctionx() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInputx");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tbl_PPNS_list");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[8];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+</body> 
+</html>
